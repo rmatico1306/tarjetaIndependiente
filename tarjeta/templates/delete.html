@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'tarjeta/formulario/css/estilos' %}">
+<link rel="stylesheet" href="{% static 'tarjeta/formulario/css/user-form.css' %}">
+<div class="container">
+    
+  <div class="form-control form-control-lg" align="left">
+    <div class="panel panel-danger">
+        <h4>Eliminar Tarjeta Vinculada </h4>
+    </div>
+    
+   
+  
+    <form method="post">
+      {% csrf_token %}
+      <div class="col-sm-6" style="background-color:white;">                    
+                    <div class="panel panel-info">
+                        <div class="form-group row">
+                          <p><span class="txt_negrita">Beneficiario:</span> <br> {{object.beneficiario}}</p>
+                        </div>
+                        <div class="form-group row">
+                          <p><span class="txt_negrita">Folio de Tarjeta:</span> <br> {{object.folio_tarjeta}}</p>
+              
+                        </div>
+                        <div class="form-group row">
+                          <p><span class="txt_negrita">Beneficio:</span> <br> {{object.beneficio}}</p>
+                          
+                        </div>
+                
+                    </div>
+      </div>
+    
+      <button type="submit" class="btn btn-primary">Eliminar</button>
+      <a href="{% url 'Home' %}" type="submit" class="btn btn-primary">Cancelar</a>
+    </form>
+  
+  </div>
+
+</div>
+
+    
+    
+{% endblock %}

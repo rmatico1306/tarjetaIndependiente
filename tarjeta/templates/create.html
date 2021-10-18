@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'tarjeta/formulario/css/estilos' %}">
+<link rel="stylesheet" href="{% static 'tarjeta/formulario/css/user-form.css' %}">
+<div class="container">
+  <div class="form-control form-control-lg" align="left">
+
+    <h4>Crear</h4>
+  
+    <form method="post">
+      {% csrf_token %}
+      <div class="col-sm-6" style="background-color:white;">
+        {{ form.as_p }}
+      </div>
+      <button type="submit" class="btn btn-primary">Aceptar</button>
+      <a href="{% url 'Home' %}" type="submit" class="btn btn-primary">Cancelar</a>
+    </form>
+  
+  </div>
+
+</div>
+
+    
+    
+{% endblock %}

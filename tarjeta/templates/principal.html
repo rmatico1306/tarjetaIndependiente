@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load extra_tags %}
+{% load static %}
+
+
+{% block content %}
+<head>
+	<title>Padròn de Beneficiarios</title>
+	
+	<!--JQUERY-->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="{% static 'tarjeta/js/tabla.js' %}"></script>
+	
+	<!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script 
+		src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script 
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	
+	<!-- Los iconos tipo Solid de Fontawesome-->
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+	<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	
+	<!-- Nuestro css-->
+	<link rel="stylesheet" type="text/css" href="static/css/user-form.css"
+		th:href="@{/css/user-form.css}">
+		<link rel="stylesheet" href="{% static 'tarjeta/formulario/css/user-form.css' %}">
+	<!-- DATA TABLE -->
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">	
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+</head>
+<body>
+	<div class="container">
+	<div class="mx-auto col-sm-16 main-section" id="myTab" role="tablist">
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+				<div class="card">
+					<div class="card-header">
+						<h4>Padron de Beneficiarios</h4>
+						<div align="left" class="btn_crear mb-3">
+							<a href="createBeneficery" type="button" class="btn btn-primary">Nuevo Beneficiario</a>
+						  </div>
+						  <div align="left" class="btn_crear mb-3">
+							<a href="create" type="button" class="btn btn-primary">Vincular Beneficiario a Tarjeta</a>
+						  </div>  
+					</div>
+					
+					<input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar  Zona |Seccion| Nombre | Dirección |Telefono | Folio">
+					<div class="card-body">
+						
+						<div class="table-responsive">
+					
+							<table id="userList" class="table table-bordered table-hover table-striped">
+	
+								<tr>
+									<th scope="col">Zona</th>
+									<th scope="col">Secc. Electroral</th>
+									<th scope="col">Nombre del Ciudadano</th>
+									<th scope="col">Direcciòn(Domicilio)</th>
+									<th scope="col">Telefono</th>
+									<th scope="col">Folio de Tarjeta</th>
+									<th scope="col">Beneficio</th>
+									<th scope="col">Acciones</th>
+	
+									<th></th>
+								</tr>
+								</thead>
+								
+								{% for tarjetas in tarjeta %}	
+									
+								<tbody>
+								<tr>
+
+									<th scope="row">{{ tarjetas.beneficiario.zona }}</th>
+									<td>{{ tarjetas.beneficiario.seccion_electoral}}</td>
+									<td>{{tarjetas.beneficiario.nombre}}</td>
+									<td>{{ tarjetas.beneficiario.direccion}}</td>
+									<td>{{ tarjetas.beneficiario.telefono}}</td>
+									<td>{{ tarjetas.folio_tarjeta}}</td>
+									<td>{{ tarjetas.beneficio}}</td>
+									<td>
+										
+											{% csrf_token %}
+											
+											<div class="btn-group">
+											  <a href="detail/{{tarjetas.id}}" title="Ver" type="button" class="btn btn-success">Ver </a>
+											  <a href="update/{{tarjetas.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
+											  <a href="delete/{{tarjetas.id}}" title="Editar" type="button" class="btn btn-danger">Eliminar </a>
+											  
+											  <!-- <a href="eliminar/{{postre.id}}" title="Eliminar"><i class="fas fa-trash"></i> </a> -->                          
+											</div>
+				  
+										  
+									</td>
+								</tr>
+								
+								</tbody>
+								{% endfor %}
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function eliminar(event) {
+	  var x = confirm("Eliminar Tarjeta ?");
+	  if (x)
+		return true;
+	  else
+		return false;
+	}
+  </script>
+</body>
+{% endblock %}
+    

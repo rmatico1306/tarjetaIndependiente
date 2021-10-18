@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'tarjeta/formulario/css/estilos' %}">
+<link rel="stylesheet" href="{% static 'tarjeta/formulario/css/user-form.css' %}">
+<div class="container">
+  <div class="form-control form-control-lg" align="left">
+
+    <h4>Crear</h4>
+   
+    <form method="post" enctype="multipart/form-ti">
+    
+    {% csrf_token %}
+    
+    <div class="fieldWrapper">
+      {%if form.errors %}
+      <p style="color:brown">Este Nombre ya Existe</p> 
+      {%endif%}
+      <div class="fieldWrapper">
+        {{ form.subject.errors }}
+        {{ form.subject.label_tag }}
+        {{ form.subject }}
+    </div>
+  </div>
+      <div class="form-group">
+          <label for="nombre" class="txt_negrita">Nombre Completo</label>
+          {{ form.nombre|add_class:"form-control" }}
+      </div>
+      <div class="form-group">
+          <label for="precio" class="txt_negrita">Seccion Electoral</label>
+          {{ form.seccion_electoral|add_class:"form-control" }}
+      </div>  
+      <div class="form-group">
+          <label for="direccion" class="txt_negrita">Direccion</label>
+          {{ form.direccion|add_class:"form-control" }}
+      </div>
+      <div class="form-group">
+          <label for="telefono" class="txt_negrita">Telefono</label>
+          {{ form.telefono|add_class:"form-control" }}
+      </div>
+      <div class="form-group">
+        <label for="zona" class="txt_negrita">Zona</label>
+        {{ form.zona|add_class:"form-control" }}
+    </div>
+      <button type="submit" class="btn btn-primary">Aceptar</button>
+      <a href="{% url 'Home' %}" type="submit" class="btn btn-primary">Cancelar</a>
+    </form>
+  
+  </div>
+
+</div>
+
+    
+    
+{% endblock %}
