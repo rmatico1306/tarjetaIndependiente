@@ -26,3 +26,32 @@ label{
 .nav-tabs{
 	border-bottom:0px;
 }
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgb(95, 158, 158);
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: rgba(241, 234, 238, 0.7);
+    color: rgb(223, 24, 123);
+  }
+
+  .thead-green {
+    background-color: rgb(126, 92, 190);
+    color: white;
+  }
+  .container {
+    text-align: center;
+  }
+  #taula {
+    height: 400px !important;
+    overflow: auto;
+    width:auto;
+}
+tr:hover td{
+    background-color: #369681;
+    color: white;
+}
+#main-container{
+    margin:0 auto;
+    width: 400px;
+}

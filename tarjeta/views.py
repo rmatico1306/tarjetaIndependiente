@@ -8,6 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin 
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout
 from django.contrib.messages import*
 from django.forms.forms import Form
 from django import forms
@@ -45,6 +46,10 @@ def register(request):
         form= UserRegisterForm()
     context={'form':form}
     return render(request,'register.html', context)
+def getOut(request):
+    logout(request)
+    messages.success(request, F"Tu session Se ha Cerrado Correctamente")
+    return redirect("/")
 #CRUD  tomado de la pagina https://blog.nubecolectiva.com/como-crear-un-crud-con-django-2-y-bootstrap-4-parte-3-python-3-7/
 #cramos la Tarjeta
 class ListCard(ListView):
@@ -84,6 +89,7 @@ class CreateBeneficery(SuccessMessageMixin, CreateView):
     success_message='  Creado exitosamente'
     def get_success_url(self):        
         return reverse('Home')
+
   
 
    

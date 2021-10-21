@@ -39,73 +39,79 @@
 
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 	<div class="mx-auto col-sm-16 main-section" id="myTab" role="tablist">
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
 				<div class="card">
 					<div class="card-header">
 						<h4>Padron de Beneficiarios</h4>
+						<p>    </p>
 						<div align="left" class="btn_crear mb-3">
 							<a href="createBeneficery" type="button" class="btn btn-primary">Nuevo Beneficiario</a>
+							<a href="create" type="button" class="btn btn-primary">Vincular Beneficiario a Tarjeta</a>
 						  </div>
 						  <div align="left" class="btn_crear mb-3">
-							<a href="create" type="button" class="btn btn-primary">Vincular Beneficiario a Tarjeta</a>
+							
 						  </div>  
 					</div>
 					
 					<input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar  Zona |Seccion| Nombre | Dirección |Telefono | Folio">
-					<div class="card-body">
+					<div class="main-container">
 						
 						<div class="table-responsive">
-					
-							<table id="userList" class="table table-bordered table-hover table-striped">
-	
-								<tr>
-									<th scope="col">Zona</th>
-									<th scope="col">Secc. Electroral</th>
-									<th scope="col">Nombre del Ciudadano</th>
-									<th scope="col">Direcciòn(Domicilio)</th>
-									<th scope="col">Telefono</th>
-									<th scope="col">Folio de Tarjeta</th>
-									<th scope="col">Beneficio</th>
-									<th scope="col">Acciones</th>
-	
-									<th></th>
-								</tr>
-								</thead>
-								
-								{% for tarjetas in tarjeta %}	
+							<div id="taula">
+								<table id="userList" class="table table-striped table-hover">
+									<thead class="thead-green">
+									<tr>
+										<th scope="col">Zona</th>
+										<th scope="col">Secc. Electroral</th>
+										<th scope="col">Nombre del Ciudadano</th>
+										<th scope="col">Direcciòn(Domicilio)</th>
+										<th scope="col">Telefono</th>
+										<th scope="col">Folio de Tarjeta</th>
+										<th scope="col">Beneficio</th>
+										<th scope="col">Acciones</th>
+		
+										<th></th>
+									</tr>
+									</thead>
 									
-								<tbody>
-								<tr>
-
-									<th scope="row">{{ tarjetas.beneficiario.zona }}</th>
-									<td>{{ tarjetas.beneficiario.seccion_electoral}}</td>
-									<td>{{tarjetas.beneficiario.nombre}}</td>
-									<td>{{ tarjetas.beneficiario.direccion}}</td>
-									<td>{{ tarjetas.beneficiario.telefono}}</td>
-									<td>{{ tarjetas.folio_tarjeta}}</td>
-									<td>{{ tarjetas.beneficio}}</td>
-									<td>
+									{% for tarjetas in tarjeta %}	
 										
-											{% csrf_token %}
+									<tbody>
+									<tr>
+	
+										<th scope="row">{{ tarjetas.beneficiario.zona }}</th>
+										<td>{{ tarjetas.beneficiario.seccion_electoral}}</td>
+										<td>{{tarjetas.beneficiario.nombre}}</td>
+										<td>{{ tarjetas.beneficiario.direccion}}</td>
+										<td>{{ tarjetas.beneficiario.telefono}}</td>
+										<td>{{ tarjetas.folio_tarjeta}}</td>
+										<td>{{ tarjetas.beneficio}}</td>
+										<td>
 											
-											<div class="btn-group">
-											  <a href="detail/{{tarjetas.id}}" title="Ver" type="button" class="btn btn-success">Ver </a>
-											  <a href="update/{{tarjetas.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
-											  <a href="delete/{{tarjetas.id}}" title="Editar" type="button" class="btn btn-danger">Eliminar </a>
+												{% csrf_token %}
+												
+												<div class="btn-group">
+												  <a href="detail/{{tarjetas.id}}" title="Ver" type="button" class="btn btn-success">Ver </a>
+												  <a href="update/{{tarjetas.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
+												  <a href="delete/{{tarjetas.id}}" title="Editar" type="button" class="btn btn-danger">Eliminar </a>
+												  
+												  <!-- <a href="eliminar/{{postre.id}}" title="Eliminar"><i class="fas fa-trash"></i> </a> -->                          
+												</div>
+					  
 											  
-											  <!-- <a href="eliminar/{{postre.id}}" title="Eliminar"><i class="fas fa-trash"></i> </a> -->                          
-											</div>
-				  
-										  
-									</td>
-								</tr>
+										</td>
+									</tr>
+									
+									</tbody>
+									{% endfor %}
+								</table>
 								
-								</tbody>
-								{% endfor %}
-							</table>
+
+							</div>
+					
 						</div>
 
 					</div>

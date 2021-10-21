@@ -7,7 +7,7 @@ from .import views
 from django.conf.urls.static import static 
 from django.conf import settings
 from django.contrib.auth.views import LoginView, LogoutView
-from tarjeta.views import DetailCard, CreateCard, UpdateCard, DeleteCard, CreateBeneficery
+from tarjeta.views import DetailCard, CreateCard, UpdateCard, DeleteCard, CreateBeneficery, getOut
 
 urlpatterns = [
    
@@ -21,7 +21,7 @@ urlpatterns = [
     path('delete/<int:pk>', DeleteCard.as_view(template_name="delete.html"), name='Delete'),    
     path('createBeneficery',CreateBeneficery.as_view(template_name = "createBeneficery.html"), name='CreateBeneficery'),
     path('create',CreateCard.as_view(template_name = "create.html"), name='Create'),
-    
+    path('getOut', views.getOut, name="Getout"),
   
 ]
 
